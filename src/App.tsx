@@ -1,5 +1,4 @@
 import React from 'react';
-import { Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Loader, ThemeProvider } from '@aws-amplify/ui-react';

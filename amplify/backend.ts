@@ -1,11 +1,9 @@
 import { defineBackend } from '@aws-amplify/backend';
 import { Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { auth } from './auth/resource';
-import { data } from './data/resource';
 
 let backend = defineBackend({
   auth,
-  data,
 });
 
 const livenessStack = backend.createStack("liveness-stack");

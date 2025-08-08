@@ -2,7 +2,10 @@ import React from 'react';
 import '@aws-amplify/ui-react/styles.css';
 import { FaceLivenessDetector } from '@aws-amplify/ui-react-liveness';
 import { Loader, ThemeProvider } from '@aws-amplify/ui-react';
+import { Amplify } from "aws-amplify";
+import outputs from "../amplify_outputs.json";
 
+Amplify.configure(outputs);
 // import awsexports from './aws-exports';
 
 // Amplify.configure(awsexports);
@@ -17,10 +20,10 @@ function App() {
     /*
      * This should be replaced with a real call to your own backend API
      */
-    fetch('https://lkh90ji3c8.execute-api.us-east-1.amazonaws.com/dev/v1/faces/verify/session', {method: 'POST'})
+    fetch('https://lkh90ji3c8.execute-api.us-east-1.amazonaws.com/dev/v1/faces/verify/session?username=diman', {method: 'POST'})
     .then(response => response.json()) // Parse the JSON response
     .then(data => {
-      setCreateLivenessApiData({sessionId: data.session_id});
+      setCreateLivenessApiData({sessionId: data.sessionId});
       setLoading(false);
       console.log(`stooooore is ${createLivenessApiData.sessionId}`)
     }) 
@@ -38,7 +41,7 @@ function App() {
     /*
      * This should be replaced with a real call to your own backend API
      */
-    const response = await fetch(`https://lkh90ji3c8.execute-api.us-east-1.amazonaws.com/dev/v1/faces/verify/session?sessionId=${createLivenessApiData.sessionId}`);
+    const response = await fetch(`https://lkh90ji3c8.execute-api.us-east-1.amazonaws.com/dev/v1/faces/verify/session?sessionId=${createLivenessApiData.sessionId}&username=diman&register=false`);
     const data = await response.json();
     console.log(`stored session ${createLivenessApiData.sessionId}`)
     console.log(data);
